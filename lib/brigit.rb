@@ -7,7 +7,9 @@ module Brigit
       if File.basename(path) == '.git' && File.directory?(path)
         Find.prune
       elsif File.file?(File.join(path, '.gitmodules'))
-        yield path
+        Dir.chdir path do
+          yield path
+        end
       end
     end
   end

@@ -9,7 +9,7 @@ module Brigit
     
     def execute!
       super
-      Brigit.at_dot_gitmodules do
+      Brigit.at_dot_gitmodules do |path|
         system "git submodule init"
         system "git submodule update"
       end
