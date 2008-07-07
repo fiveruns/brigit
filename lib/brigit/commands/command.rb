@@ -22,14 +22,21 @@ module Brigit
       attr_accessor :help
     end
     
-    attr_reader :options, :args
-    def initialize(options, args)
+    attr_reader :options
+    def initialize(options)
       @options = options
-      @args = args
     end
     
     def execute!
-      raise self.class.name
+      raise ArgumentError, "Must be in Git repository" unless repo?
+    end
+    
+    #######
+    private
+    #######
+
+    def repo?
+      File.directory?(File.join(Dir.pwd, '.git'))
     end
     
   end

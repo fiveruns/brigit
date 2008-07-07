@@ -1,0 +1,15 @@
+bin/brigit
+lib/brigit/cli.rb
+lib/brigit/commands/command.rb
+lib/brigit/commands/map_command.rb
+lib/brigit/commands/update_command.rb
+lib/brigit/config_parser.rb
+lib/brigit/version.rb
+lib/brigit.rb
+lib/ext/option_parser.rb
+Rakefile
+README.rdoc
+test/config_parser_test.rb
+test/fixtures/example.conf
+test/test_helper.rb
+Manifest

@@ -2,8 +2,6 @@
 
 require File.dirname(__FILE__) << "/../lib/brigit"
 
-Brigit.load_profiles
-
 Brigit::CLI.new.parse(*ARGV) do |command|
   command.execute!
 end
