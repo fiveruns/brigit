@@ -31,7 +31,7 @@ module Brigit
         
         opts.separator "OPTIONS:\n"
         
-        opts.on('-o', '--open', "Convert DOT to FORMAT  (`map' only, requires OSX & `dot' in PATH)") do
+        opts.on('-o', '--open', "Open with Preview.app  (`map' only, requires OSX & `dot' in PATH)") do
           options.open = true
         end
         
