@@ -22,9 +22,10 @@ module Brigit
       attr_accessor :help
     end
     
-    attr_reader :options
-    def initialize(options)
+    attr_reader :options, :args
+    def initialize(options, *args)
       @options = options
+      @args = args
     end
     
     def execute!

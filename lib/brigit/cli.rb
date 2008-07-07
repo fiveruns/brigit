@@ -7,7 +7,7 @@ module Brigit
     def parse(*args)
       parser.parse!(args)
       if (args.first && command = Command[args.shift])
-        yield command.new(options)
+        yield command.new(options, *args)
       else
         abort "No command given.\n#{parser}"
       end
