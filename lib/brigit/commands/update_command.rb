@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) << "/command"
+require 'brigit/commands/command'
 require 'find'
 
 module Brigit

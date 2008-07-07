@@ -1,22 +1,11 @@
+require 'brigit/listable'
+require 'brigit/fallible'
+
 module Brigit
   
   class Command
-    
-    def self.[](name)
-      list.detect { |command| command.name == name }
-    end
-    
-    def self.inherited(klass)
-      list << klass
-    end
-    
-    def self.list
-      @list ||= []
-    end
-    
-    def self.name
-      to_s.sub(/^.+::(.+?)Command$/, '\1').downcase
-    end
+    include Listable
+    include Fallible
     
     class << self
       attr_accessor :help

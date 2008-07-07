@@ -15,6 +15,8 @@ module Brigit
   end
     
 end
+
+$:.unshift File.dirname(__FILE__)
   
 # Require all files
 Dir[File.dirname(__FILE__) << "/**/*.rb"].each do |file|

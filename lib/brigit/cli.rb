@@ -5,23 +5,31 @@ module Brigit
   class CLI
     
     def parse(*args)
-      parser.parse!(args)
+      self.class.parser.parse!(args)
       if (args.first && command = Command[args.shift])
-        yield command.new(options, *args)
+        yield command.new(self.class.options, *args)
       else
         abort "No command given.\n#{parser}"
       end
     end
-    
-    def options
-      @options ||= OpenStruct.new
+        
+    def self.usage
+      parser.to_s
     end
     
     #######
     private
     #######
     
-    def parser
+    def self.options
+      @options ||= OpenStruct.new
+    end
+    
+    def self.parser
+      
+      command_list = Command.list.map { |command| "  * #{command.name}: #{command.help}" }.join("\n")
+      
+      options.inventory = {}
       
       @parser ||= OptionParser.new do |opts|
         
@@ -30,6 +38,12 @@ module Brigit
         opts.separator "COMMANDS:\n#{command_list}\n"
         
         opts.separator "OPTIONS:\n"
+
+        Inventory.list.each do |inventory|
+          opts.on("-#{inventory.name[0,1]}", "--#{inventory.name} PATH", "Location of #{inventory.name} (`grab' only)") do |path|
+            options.inventory[inventory] = path
+          end
+        end
         
         opts.on('-o', '--open', "Open with Preview.app  (`map' only, requires OSX & `dot' in PATH)") do
           options.open = true
@@ -40,10 +54,6 @@ module Brigit
         end
         
       end
-    end
-    
-    def command_list
-      Command.list.map { |command| "  * #{command.name}: #{command.help}" }.join("\n")
     end
     
   end

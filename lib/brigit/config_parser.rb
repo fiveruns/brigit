@@ -20,21 +20,25 @@ module Brigit
       end
       
     end
-
-    SECTION = /
-      \[                    # [
-      ([^\]]+)              # very permissive!
-      \]                    # ]
-    /x
-
-    OPTION = /
-      ([^:=\s][^:=]*)       # very permissive!
-      \s*[:=]\s*            # any number of space chars,
-                            # followed by separator
-                            # (either : or =), followed
-                            # by any # space chars
-      (.*)$                 # everything up to eol
-    /x
+    
+    def self.section_pattern
+      @section_pattern ||= /
+        \[                    # [
+        ([^\]]+)              # very permissive!
+        \]                    # ]
+      /x
+    end
+    
+    def self.option_pattern
+      @option_pattern ||= /
+        ([^:=\s][^:=]*)       # very permissive!
+        \s*[:=]\s*            # any number of space chars,
+                              # followed by separator
+                              # (either : or =), followed
+                              # by any # space chars
+        (.*)$                 # everything up to eol
+      /x
+    end
 
 
     # FIXME: This is *way* ugly     
@@ -44,7 +48,7 @@ module Brigit
       option = nil
       lines.each_with_index do |line, number|
         next if skip? line
-        if line =~ OPTION
+        if line =~ self.class.option_pattern
           # option line
           option, value = $1, $2
           option = option.downcase.strip
@@ -55,7 +59,7 @@ module Brigit
           # continuation line
           value = line.strip
           section[option] = section[option] ? (section[option] << "\n#{clean value}") : clean(value)
-        elsif line =~ SECTION
+        elsif line =~ self.class.section_pattern
           section = sections[$1]
           sections[$1] = section
           option = nil
