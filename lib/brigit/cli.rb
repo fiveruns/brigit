@@ -9,7 +9,7 @@ module Brigit
       if (args.first && command = Command[args.shift])
         yield command.new(self.class.options, *args)
       else
-        abort "No command given.\n#{parser}"
+        abort "No command given.\n#{self.class.parser}"
       end
     end
         
