@@ -33,7 +33,7 @@ module Brigit
       
       @parser ||= OptionParser.new do |opts|
         
-        opts.banner = %("Brigit," Submodule utilities for Git\nUSAGE: brigit COMMAND [OPTIONS])
+        opts.banner = %(Brigit (v#{Version::STRING}) Submodule utilities for Git\nUSAGE: brigit COMMAND [OPTIONS])
 
         opts.separator "COMMANDS:\n#{command_list}\n"
         
@@ -47,6 +47,11 @@ module Brigit
         
         opts.on('-o', '--open', "Open with Preview.app  (`map' only, requires OSX & `dot' in PATH)") do
           options.open = true
+        end
+        
+        opts.on('-v', '--version', "Show version") do
+          STDERR.puts "Brigit v#{Version::STRING}"
+          exit
         end
         
         opts.on_tail('-h', '--help', 'Show this message') do
