@@ -14,7 +14,25 @@ module Brigit
     end
   end
   
-  def self.at_repos(base = Dir.pwd)
+  # Note: Doesn't validate against .gitmodules or .git/config
+  def self.parent_of(path)
+    components = path.split(File::SEPARATOR)
+    components.pop
+    matched = []
+    components.inject(['']) do |list, component|
+      list << component
+      check_path = File.join(*list.clone.push('.git'))
+      matched << File.dirname(check_path) if File.exists?(check_path)
+      list
+    end
+    matched.pop
+  end
+  
+  def self.submodule?(path)
+    parent_of(path)
+  end
+  
+  def self.at_repos(submodules = false, base = Dir.pwd)
     Find.find(base) do |path|
       if File.basename(path) == '.git' && File.directory?(path)
         Find.prune
@@ -22,7 +40,7 @@ module Brigit
         Dir.chdir path do
           yield path
         end
-        Find.prune
+        Find.prune unless submodules
       end
     end
   end
