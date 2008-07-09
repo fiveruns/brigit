@@ -2,7 +2,5 @@
 
 require File.dirname(__FILE__) << "/../lib/brigit"
 
-Brigit::CLI.new.parse(*ARGV) do |command|
-  command.execute!
-end
+Brigit::CLI.new.parse(*ARGV).run
   

@@ -4,10 +4,8 @@ require 'find'
 module Brigit
   
   class UpdateCommand < Command
-    
-    self.help = "Update all submodules in the repo, recursively"
-    
-    def execute!
+        
+    def run
       super
       Brigit.at_dot_gitmodules do |path|
         system "git submodule init"

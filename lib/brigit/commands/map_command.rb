@@ -5,10 +5,13 @@ module Brigit
   
   class MapCommand < Command
     
-    self.help = "Graphs of submodules in this repository"
-    
-    def execute!
-      super
+    def run
+      open = false
+      super do |parser|
+        parser.on('-o', '--open', "Open as PNG in Preview.app (OSX only, requires `dot')") do
+          open = true
+        end
+      end
       text =  %|digraph G {\n|
       # TODO: Allow customization
       text << %|ranksep=.75; size = "12,12";\n|
@@ -21,7 +24,7 @@ module Brigit
         end
       end
       text << %|}\n|
-      if options.open
+      if open
         IO.popen("dot -Tpng | open -f -a /Applications/Preview.app", 'w') do |file|
           file.write text
         end
@@ -36,18 +39,18 @@ module Brigit
     
     def origin_at(path)
       filename = File.join(path, '.git/config')
-      result = parser.parse(File.readlines(filename))
+      result = config_parser.parse(File.readlines(filename))
       result['remote "origin"']['url']
     end
     
     def submodules_at(path)
       filename = File.join(path, '.gitmodules')
-      result = parser.parse(File.readlines(filename))
+      result = config_parser.parse(File.readlines(filename))
       result.values
     end
 
-    def parser
-      @parser ||= ConfigParser.new
+    def config_parser
+      @config_parser ||= ConfigParser.new
     end
       
   end

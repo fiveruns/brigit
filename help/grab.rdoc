@@ -1,0 +1,16 @@
+Grab repos matching optional pattern from a gitosis-admin config"
+
+== Syntax
+
+  brigit grab PATH_TO_GITOSIS_ADMIN_REPO [PATTERN, ...]
+  
+== Examples
+
+Using the list of repositories provided by ~/gitosis-admin, clone all that
+include the substring 'my-product' or 'their-product'
+
+  brigit grab ~/gitosis-admin my-product their-product
+  
+The same, but clone all repositories:
+
+  brigit grab ~/gitosis-admin

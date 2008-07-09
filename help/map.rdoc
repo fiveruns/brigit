@@ -1,0 +1,17 @@
+Graphs of submodules in this repository
+
+Note: You must be in the Git repository when this command is executed.
+
+== Syntax
+
+  brigit map [OPTIONS]
+
+== Examples
+
+Output DOT-format output for current repository structure:
+
+  brigit map
+  
+Display graph of current repository structure:
+
+  brigit map -o

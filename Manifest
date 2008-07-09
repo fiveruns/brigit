@@ -1,4 +1,7 @@
 bin/brigit
+help/grab.rdoc
+help/map.rdoc
+help/update.rdoc
 lib/brigit/cli.rb
 lib/brigit/commands/command.rb
 lib/brigit/commands/grab_command.rb
