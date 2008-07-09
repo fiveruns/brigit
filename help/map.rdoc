@@ -1,10 +1,12 @@
 Graphs of submodules in this repository
 
-Note: You must be in the Git repository when this command is executed.
-
 == Syntax
 
   brigit map [OPTIONS]
+  
+== Notes
+
+You must be in the Git repository when this command is executed.
 
 == Examples
 

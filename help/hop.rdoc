@@ -1,0 +1,36 @@
+Change submodule references in repositories.
+
+== Syntax
+
+  brigit hop SUBMODULE_URL [OPTIONS] [REPO_PATHS, ...]
+  
+== Notes
+
+* For safety reasons:
+  * It WILL NOT change a submodule that has uncommitted changes; the
+    submodule must be pristine. You need to handle these submodules manually.
+  * It does not currently commit the updated submodule reference in the parent
+    repository; the list of modified repos are output after the command
+    is executed; you still need to commit and push manually.
+* It will do a fresh pull from the submodule's origin before checking out the
+  reference you select with the -r/--ref option (default: 'master')
+  
+== Examples
+
+Update all submodules pointing to remote origin 'git@example.com:mine' in
+repositories under PWD (or just PWD, if it's a repo itself) to a whatever
+the current commit is on the 'master' branch.
+
+  git hop git@example.com:mine
+  
+Do the same, but only in the foo/bar repository
+
+  git hop git@example.com:mine foo/bar
+  
+The same, but this time set the submodule commit to the 'alternate' branch
+
+  git hop git@example.com:mine -r alternate foo/bar
+
+And this time, commit SHA 25b306c73
+
+  git hop git@example.com:mine -r 25b306c73 foo/bar

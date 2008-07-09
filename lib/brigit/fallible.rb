@@ -3,7 +3,7 @@ module Brigit
   module Fallible
     
     def fail(message)
-      abort "\n#{message}\n\n---\n#{CLI.usage}"
+      abort "#{CLI.banner}\n---\n#{message}\n(See `brigit #{self.class.name} --help' for more information)"
     end
   
   end

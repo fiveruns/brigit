@@ -1,7 +1,9 @@
 Update all submodules in the repo, recursively
 
-Note: You must be in the Git repository when this command is executed.
-
 == Syntax
 
   brigit update
+
+== Notes
+
+You must be in the Git repository when this command is executed.
