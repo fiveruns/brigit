@@ -1,11 +1,14 @@
 require 'brigit/listable'
 require 'brigit/fallible'
+require 'brigit/pretending'
+
 
 module Brigit
   
   class Command
     include Listable
     include Fallible
+    include Pretending
     
     def self.help
       @help ||= begin
@@ -31,6 +34,19 @@ module Brigit
     #######
     private
     #######
+    
+    def say(message)
+      message = pretending? ? "{PRETENDING} #{message}" : message
+      STDERR.puts message
+    end
+    
+    def sh(command)
+      if pretending?
+        say command
+      else
+        system command
+      end
+    end
     
     def check_repo!
       raise ArgumentError, "Must be in Git repository" unless repo?

@@ -8,8 +8,8 @@ module Brigit
     def run
       super
       Brigit.at_dot_gitmodules do |path|
-        system "git submodule init"
-        system "git submodule update"
+        sh "git submodule init"
+        sh "git submodule update"
       end
     end
     

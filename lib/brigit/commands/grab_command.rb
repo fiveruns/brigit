@@ -6,16 +6,20 @@ module Brigit
   class GrabCommand < Command
     
     def run
-      super
+      super { |parser| add_pretend_to parser }
       matching_repositories.each do |name, location|
         if File.exists?(name)
-          STDERR.puts "#{name}: Already exists, skipping..."
+          say "#{name}: Already exists, skipping..."
         else
-          STDERR.puts "#{name}: Cloning from #{location} ..."
-          system "git clone '#{location}' '#{name}'"
-          STDERR.puts "#{name}: Updating submodules ..."
-          Dir.chdir name do
-            UpdateCommand.new.run
+          say "#{name}: Cloning from #{location} ..."
+          sh "git clone '#{location}' '#{name}'"
+          say "#{name}: Updating submodules ..."
+          if pretending?
+            say "(Would update submodules for `#{name}')"
+          else
+            Dir.chdir name do
+              UpdateCommand.new.run
+            end
           end
         end
       end
