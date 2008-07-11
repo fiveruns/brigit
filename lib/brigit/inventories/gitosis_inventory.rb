@@ -49,7 +49,7 @@ module Brigit
     end
     
     def repo_path(component)
-      [base, component].join(':')
+      [base, component].join(':') << '.git'
     end
     
     def sections

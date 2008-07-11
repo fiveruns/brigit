@@ -27,7 +27,7 @@ module Brigit
       end
 
       def name
-        to_s.sub(/^.+::(.+?)[A-Z][a-z]+$/, '\1').downcase
+        to_s.sub(/^(?:.+::)?(.+?)[A-Z][a-z]+$/, '\1').downcase
       end
       
     end

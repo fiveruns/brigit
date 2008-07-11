@@ -11,5 +11,5 @@ Echoe.new 'brigit' do |p|
   p.summary = "Git utilities"
   p.url = "http://github.com/fiveruns/brigit"
   p.include_rakefile = true
+  p.rcov_options << '--sort coverage --exclude gems --text-summary'
 end
-

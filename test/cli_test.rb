@@ -8,12 +8,11 @@ class CLITest < Test::Unit::TestCase
   context "Brigit::CLI" do
     
     setup do 
-      @old_stderr = $stderr
-      $stderr = StringIO.new
+      mock_stderr!
     end
     
     teardown do
-      $stderr = @old_stderr
+      restore_stderr!
     end
 
     should "parse valid command" do
@@ -27,7 +26,7 @@ class CLITest < Test::Unit::TestCase
       assert_raises SystemExit do
         parse %w(this-does-not-exist)
       end
-      assert !abort_message.empty?
+      assert !stderr_output.empty?
     end
     
     should "have banner with version number" do
@@ -39,11 +38,6 @@ class CLITest < Test::Unit::TestCase
   #######
   private
   #######
-  
-  def abort_message
-    $stderr.rewind
-    $stderr.read
-  end
 
   def parsing(args)
     yield(Brigit::CLI.new.parse(*args), args)

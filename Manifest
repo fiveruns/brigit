@@ -21,6 +21,15 @@ lib/ext/option_parser.rb
 Manifest
 Rakefile
 README.rdoc
+test/brigit_test.rb
+test/cli_test.rb
+test/command_test.rb
 test/config_parser_test.rb
+test/fallible_test.rb
 test/fixtures/example.conf
+test/fixtures/gitosis-admin/gitosis.conf
+test/fixtures/submodule_methods/parent/submodule/foo.rb
+test/gitosis_test.rb
+test/inventory_test.rb
+test/option_parser_test.rb
 test/test_helper.rb

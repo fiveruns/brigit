@@ -37,7 +37,7 @@ module Brigit
     
     def say(message)
       message = pretending? ? "{PRETENDING} #{message}" : message
-      STDERR.puts message
+      $stderr.puts message
     end
     
     def sh(command)
