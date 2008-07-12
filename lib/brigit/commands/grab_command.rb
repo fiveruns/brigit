@@ -14,13 +14,7 @@ module Brigit
           say "#{name}: Cloning from #{location} ..."
           sh "git clone '#{location}' '#{name}'"
           say "#{name}: Updating submodules ..."
-          if pretending?
-            say "(Would update submodules for `#{name}')"
-          else
-            Dir.chdir name do
-              UpdateCommand.new.run
-            end
-          end
+          update name
         end
       end
     end
@@ -28,6 +22,20 @@ module Brigit
     #######
     private
     #######
+    
+    def update(name)
+      if pretending?
+        say "(Would update submodules for `#{name}')"
+      else
+        if File.directory?(name)        
+          Dir.chdir name do
+            UpdateCommand.new.run
+          end
+        else
+          say "ERROR: Directory #{name} was not created; skipping..."
+        end
+      end      
+    end
     
     def inventory
       @inventory ||= GitosisInventory.new(args.shift)

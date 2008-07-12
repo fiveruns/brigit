@@ -28,8 +28,10 @@ test/config_parser_test.rb
 test/fallible_test.rb
 test/fixtures/example.conf
 test/fixtures/gitosis-admin/gitosis.conf
+test/fixtures/grab_command/existing_directory/stub
 test/fixtures/submodule_methods/parent/submodule/foo.rb
 test/gitosis_test.rb
+test/grab_command_test.rb
 test/inventory_test.rb
 test/option_parser_test.rb
 test/test_helper.rb

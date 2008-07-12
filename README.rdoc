@@ -6,6 +6,15 @@ A random collection of utilities for developers working with Git repositories.
 
 Feel free to fork, send patches, etc.  Development is done at http://github.com/fiveruns/brigit
 
+== Usage
+
+Call the +brigit+ executable without any arguments to get the list of commands;
+you can then do:
+
+  brigit <command> --help
+  
+The same information is available under the help/.
+
 == Authors
 
 The FiveRuns development team, http://www.fiveruns.org
