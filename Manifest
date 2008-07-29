@@ -2,12 +2,14 @@ bin/brigit
 help/grab.rdoc
 help/hop.rdoc
 help/map.rdoc
+help/status.rdoc
 help/update.rdoc
 lib/brigit/cli.rb
 lib/brigit/commands/command.rb
 lib/brigit/commands/grab_command.rb
 lib/brigit/commands/hop_command.rb
 lib/brigit/commands/map_command.rb
+lib/brigit/commands/status_command.rb
 lib/brigit/commands/update_command.rb
 lib/brigit/config_parser.rb
 lib/brigit/fallible.rb

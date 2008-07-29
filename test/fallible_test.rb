@@ -8,11 +8,11 @@ class FallibleTest < Test::Unit::TestCase
     setup do 
       @klass = Class.new
       @klass.send(:include, Brigit::Fallible)
-      mock_stderr!
+      mock_streams!
     end
     
     teardown do
-      restore_stderr!
+      restore_streams!
     end
     
     context "fail method" do
@@ -22,8 +22,8 @@ class FallibleTest < Test::Unit::TestCase
       should "output CLI banner and message" do
         assert_raises SystemExit do
           @klass.new.fail @failed
-          assert stderr_output.include?(Brigit::CLI.banner)
-          assert stderr_output.include?(@failed)
+          assert stream_output.include?(Brigit::CLI.banner)
+          assert stream_output.include?(@failed)
         end
       end
     end

@@ -23,22 +23,22 @@ class CommandTest < Test::Unit::TestCase
     
     context "say instance method" do
       setup do
-        mock_stderr!
+        mock_streams!
       end
       teardown do
-        restore_stderr!
+        restore_streams!
       end
       should "output message" do
         @klass.new.run
-        assert stderr_output.include?('foo')        
-        assert !stderr_output.include?('PRETEND')        
+        assert stream_output.include?('foo')        
+        assert !stream_output.include?('PRETEND')        
       end
       should "mention pretending if doing so" do
         instance = @klass.new
         instance.pretend!
         instance.run
-        assert stderr_output.include?('foo')
-        assert stderr_output.include?('PRETEND')
+        assert stream_output.include?('foo')
+        assert stream_output.include?('PRETEND')
       end
     end
     

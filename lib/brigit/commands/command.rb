@@ -37,7 +37,7 @@ module Brigit
     
     def say(message)
       message = pretending? ? "{PRETENDING} #{message}" : message
-      $stderr.puts message
+      HighLine.say message
     end
     
     def sh(command)
@@ -63,6 +63,16 @@ module Brigit
 
     def repo?
       File.directory?(File.join(Dir.pwd, '.git'))
+    end
+    
+    def submodules_at(path)
+      filename = File.join(path, '.gitmodules')
+      result = config_parser.parse(File.readlines(filename))
+      result.values
+    end
+
+    def config_parser
+      @config_parser ||= ConfigParser.new
     end
     
   end

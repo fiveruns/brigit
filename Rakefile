@@ -12,4 +12,6 @@ Echoe.new 'brigit' do |p|
   p.url = "http://github.com/fiveruns/brigit"
   p.include_rakefile = true
   p.rcov_options << '--sort coverage --exclude gems --text-summary'
+  p.runtime_dependencies << ['git', '>= 1.0.5']
+  p.runtime_dependencies << ['highline', '>= 1.4.0']  
 end

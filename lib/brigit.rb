@@ -1,4 +1,11 @@
+require 'rubygems'
 require 'find'
+
+gem 'git', '>= 1.0.5'
+require 'git'
+
+gem 'highline', '>= 1.4.0'
+require 'highline/import'
 
 module Brigit
   
@@ -43,6 +50,10 @@ module Brigit
         Find.prune unless submodules
       end
     end
+  end
+  
+  def self.repo
+    Git.open(Dir.pwd)
   end
     
 end

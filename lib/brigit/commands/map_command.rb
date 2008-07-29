@@ -42,16 +42,6 @@ module Brigit
       result = config_parser.parse(File.readlines(filename))
       result['remote "origin"']['url']
     end
-    
-    def submodules_at(path)
-      filename = File.join(path, '.gitmodules')
-      result = config_parser.parse(File.readlines(filename))
-      result.values
-    end
-
-    def config_parser
-      @config_parser ||= ConfigParser.new
-    end
       
   end
   

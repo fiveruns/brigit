@@ -9,7 +9,13 @@ module Brigit
     module ClassMethods
       
       def [](name)
-        list.detect { |klass| klass.name == name }
+        matching = list.select { |klass| klass.name =~ /^#{Regexp.quote name}/io }
+        return false unless matching.any?
+        if matching.size > 1
+          HighLine.say %|<%= color "Too many matches for `#{name}'", :red %>|
+          return false
+        end
+        matching.first
       end
 
       def inherited(klass)

@@ -2,6 +2,11 @@
 
 A random collection of utilities for developers working with Git repositories.
 
+== Dependencies
+
+* git (>= 1.0.5) by Scott Chacon (sudo gem install git)
+* highline (>= 1.4.0) by James Edward Gray II (sudo gem install highline)
+
 == Contributing
 
 Feel free to fork, send patches, etc.  Development is done at http://github.com/fiveruns/brigit

@@ -5,11 +5,11 @@ class GrabCommandTest < Test::Unit::TestCase
   context "GrabCommand" do
 
     setup do
-      mock_stderr!
+      mock_streams!
       @command = Brigit::GrabCommand.new
     end
     
-    teardown { restore_stderr! }
+    teardown { restore_streams! }
     
     context "update instance method" do
       setup do
@@ -33,7 +33,7 @@ class GrabCommandTest < Test::Unit::TestCase
           assert_nothing_raised do
             update 'missing_directory'
           end
-          assert stderr_output.include?('skipping')
+          assert stream_output.include?('skipping')
         end
       end
     end

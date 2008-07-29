@@ -8,11 +8,11 @@ class CLITest < Test::Unit::TestCase
   context "Brigit::CLI" do
     
     setup do 
-      mock_stderr!
+      mock_streams!
     end
     
     teardown do
-      restore_stderr!
+      restore_streams!
     end
 
     should "parse valid command" do
@@ -26,7 +26,7 @@ class CLITest < Test::Unit::TestCase
       assert_raises SystemExit do
         parse %w(this-does-not-exist)
       end
-      assert !stderr_output.empty?
+      assert !stream_output.empty?
     end
     
     should "have banner with version number" do

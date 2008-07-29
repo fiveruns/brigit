@@ -20,18 +20,23 @@ class Test::Unit::TestCase
     FileUtils.rm_rf File.join(location, '.git') rescue nil
   end
   
-  def mock_stderr!
+  def mock_streams!
+    @old_output = $terminal.instance_variable_get(:@output)
+    $terminal.instance_variable_set(:@output, StringIO.new)
     @old_stderr = $stderr
     $stderr = StringIO.new
   end
   
-  def restore_stderr!
+  def restore_streams!
+    $terminal.instance_variable_set(:@output, @old_output)
     $stderr = @old_stderr
   end
   
-  def stderr_output
+  def stream_output
+    output = $terminal.instance_variable_get(:@output)
+    output.rewind
     $stderr.rewind
-    $stderr.read
+    output.read << $stderr.read
   end
   
 end
