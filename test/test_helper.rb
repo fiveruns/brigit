@@ -1,6 +1,6 @@
 require 'test/unit'
 require 'rubygems'
-require 'Shoulda'
+require 'shoulda'
 require 'flexmock/test_unit'
 
 require File.dirname(__FILE__) << "/../lib/brigit"
