@@ -6,6 +6,7 @@ A random collection of utilities for developers working with Git repositories.
 
 * git (>= 1.0.5) by Scott Chacon (sudo gem install git)
 * highline (>= 1.4.0) by James Edward Gray II (sudo gem install highline)
+* echoe (>= 3) by Cloudburst, LLC (sudo gem install echoe)
 
 == Contributing
 
