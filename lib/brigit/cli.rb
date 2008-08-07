@@ -5,7 +5,7 @@ module Brigit
   class CLI
     
     def parse(*args)
-      if (command = Command[args.shift])
+      if !args.empty? && (command = Command[args.shift])
         command.new(*args)
       else
         abort "No command given.\n\n#{self.class.usage}"
