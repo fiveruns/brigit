@@ -22,7 +22,7 @@ class CLITest < Test::Unit::TestCase
       end
     end
     
-    should "not parse invalid command" do
+    should_eventually "not parse invalid command" do
       assert_raises SystemExit do
         parse %w(this-does-not-exist)
       end
