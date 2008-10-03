@@ -8,16 +8,12 @@ module Brigit
     def run
       pull = false
       super do
-        parser.on('-p', '--pull', "Pull master repo (if on branch `master')") do
+        parser.on('-p', '--pull', "Pull repo (remote branch must have same name)") do
           pull = true
         end
       end
       if pull
-        if Brigit.repo.branch.name == 'master'
-          sh "git pull origin master"
-        else
-          say "Not on `master' branch; skipping update of main repo..."
-        end
+        sh "git pull origin '#{Brigit.repo.current_branch}'"
       end
       Brigit.at_dot_gitmodules do |path|
         say "---\nSubmodule: #{path}"
